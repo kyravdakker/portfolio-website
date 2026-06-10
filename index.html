@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyra van den Akker</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #0000FF;
+    --cream: #F0EDE4;
+    --white: #ffffff;
+    --dark: #111111;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    mix-blend-mode: normal;
+  }
+
+  .nav-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--blue);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+  }
+
+  .hero-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-title .blue { color: var(--blue); }
+
+  .hero-sub {
+    margin-top: 2.5rem;
+    max-width: 480px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: 5rem 2rem 3rem;
+    border-top: 2px solid var(--blue);
+  }
+
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  /* CASES */
+  .cases { padding: 0 2rem 6rem; }
+
+  .case {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    padding: 3rem 0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .case:last-child { border-bottom: 1px solid rgba(0,0,0,0.12); }
+
+  .case:hover { background: rgba(0,0,255,0.03); }
+
+  .case-left { padding-right: 3rem; }
+
+  .case-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1.25rem;
+    opacity: 0.6;
+  }
+
+  .case-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    line-height: 0.95;
+    color: var(--dark);
+    margin-bottom: 1.75rem;
+  }
+
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 0.25rem 0.65rem;
+  }
+
+  .case-desc {
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: #555;
+    max-width: 420px;
+  }
+
+  .case-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  .case-img {
+    aspect-ratio: 4/3;
+    background: #d8d4c8;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .case-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .case:hover .case-img img { transform: scale(1.04); }
+
+  .case-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+    background: #dbd7ce;
+  }
+
+  .case-img.wide {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue);
+    color: var(--white);
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 4rem);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-agency {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* CASE DETAIL OVERLAY */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--cream);
+    overflow-y: auto;
+  }
+
+  .overlay.active { display: block; }
+
+  .overlay-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem;
+  }
+
+  .overlay-close {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+  }
+
+  .btn-close {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+  }
+
+  .overlay-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 7rem);
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: var(--dark);
+    margin-bottom: 2.5rem;
+  }
+
+  .overlay-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .overlay-text { font-size: 1rem; line-height: 1.7; color: #444; }
+  .focus-areas { margin-top: 2rem; }
+  .focus-areas-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.75rem; }
+  .focus-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .focus-list li { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(0,0,255,0.06); color: var(--dark); padding: 0.35rem 0.75rem; border-radius: 2px; }
+
+  .overlay-photos {
+    columns: 2;
+    column-gap: 1rem;
+  }
+
+  .overlay-photo {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    background: #dbd7ce;
+    overflow: hidden;
+  }
+
+  .overlay-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .overlay-video-cell {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    background: #000;
+  }
+
+  .overlay-video-cell video { width: 100%; height: auto; display: block; }
+
+  .overlay-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.3);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .case { grid-template-columns: 1fr; }
+    .case-left { padding-right: 0; margin-bottom: 2rem; }
+    .overlay-body { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-title { font-size: clamp(3.5rem, 16vw, 6rem); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Kyra van den Akker</a>
+  <ul class="nav-links">
+    <li><a href="#casussen">Werk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Portfolio — ACT.AGENCY</p>
+  <h1 class="hero-title">
+    <span class="blue">Kyra</span><br>
+    Van Den<br>
+    Akker
+  </h1>
+  <p class="hero-subtitle">Junior Account/Projectmanager bij ACT.AGENCY — Amsterdam</p>
+  <span class="hero-scroll">Scroll</span>
+</section>
+
+<!-- CASES -->
+<section id="casussen">
+  <div class="section-header">
+    <p class="section-eyebrow">Geselecteerd werk</p>
+    <h2 class="section-title">Casussen</h2>
+  </div>
+
+  <div class="cases">
+
+    <!-- CASE 1 -->
+    <article class="case" onclick="openOverlay('case1')">
+      <div class="case-left">
+        <p class="case-number">01</p>
+        <h3 class="case-title">Events & Productie</h3>
+        <div class="case-tags">
+          <span class="tag">Eventproductie</span>
+          <span class="tag">Planning</span>
+          <span class="tag">Stakeholdermanagement</span>
+        </div>
+        <p class="case-desc">
+          Van eventproductie en artist handling tot transportcoördinatie en operationele planning. Verantwoordelijk voor het coördineren van artiesten, stakeholders, crew en logistieke processen tijdens evenementen zoals No Art, Strafwerk, Audio Obscura, Awakenings, Draaimolen, Keinemusik, Circoloco, Loveland en meer.
+        </p>
+      </div>
+      <div class="case-right">
+        <div class="case-img wide">
+          <img src="casus-1/IMG_0964.JPG" alt="Events & Productie foto 1">
+        </div>
+        <div class="case-img">
+          <img src="casus-1/IMG_0847.JPG" alt="Events & Productie foto 2">
+        </div>
+        <div class="case-img">
+          <img src="casus-1/IMG_3013.jpeg" alt="Events & Productie foto 3">
+        </div>
+      </div>
+    </article>
+
+    <!-- CASE 2 -->
+    <article class="case" onclick="openOverlay('case2')">
+      <div class="case-left">
+        <p class="case-number">02</p>
+        <h3 class="case-title">AAAFRESH123 Expositie & Event</h3>
+        <div class="case-tags">
+          <span class="tag">Projectmanagement</span>
+          <span class="tag">Eventproductie</span>
+          <span class="tag">Stakeholdermanagement</span>
+        </div>
+        <p class="case-desc">
+          Verantwoordelijk voor de coördinatie en uitvoering van een kunstexpositie en netwerkevenement op kerstavond. Het project bracht kunstenaars, sponsoren, leveranciers en gasten samen binnen één concept en vereiste afstemming tussen verschillende partijen om alles succesvol te realiseren.
+        </p>
+      </div>
+      <div class="case-right">
+        <div class="case-img wide">
+          <img src="casus-2/AAAfresh123-Expo-Dec-2025-Amsterdam-forInstagram-Shot_by_Boven-165.JPG" alt="AAAFRESH123 foto 1">
+        </div>
+        <div class="case-img">
+          <img src="casus-2/AAAfresh123-Expo-Dec-2025-Amsterdam-forInstagram-Shot_by_Boven-24.JPG" alt="AAAFRESH123 foto 2">
+        </div>
+        <div class="case-img">
+          <img src="casus-2/IMG_7533.JPG" alt="AAAFRESH123 foto 3">
+        </div>
+      </div>
+    </article>
+
+    <!-- CASE 3 -->
+    <article class="case" onclick="openOverlay('case3')">
+      <div class="case-left">
+        <p class="case-number">03</p>
+        <h3 class="case-title">Luxury Selection</h3>
+        <div class="case-tags">
+          <span class="tag">Accountmanagement</span>
+          <span class="tag">Campagnecoördinatie</span>
+          <span class="tag">Merkactivaties</span>
+        </div>
+        <p class="case-desc">
+          Sinds september verantwoordelijk voor de dagelijkse coördinatie van meerdere luxury spiritmerken binnen één account, waaronder Seventy One Gin, De Lossy Champagne, Clase Azul, Beluga Vodka en NOAM Beer.
+        </p>
+      </div>
+      <div class="case-right">
+        <div class="case-img wide">
+          <img src="casus-3/IMG_2345.jpeg" alt="Luxury Selection foto 1">
+        </div>
+        <div class="case-img">
+          <img src="casus-3/IMG_9958.jpeg" alt="Luxury Selection foto 2">
+        </div>
+        <div class="case-img">
+          <img src="casus-3/260220-NM_02_LXR-deLossy_3-Hexashots.jpg" alt="Luxury Selection foto 3">
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Kyra van<br>den Akker</div>
+  <div class="footer-right">
+    <p class="footer-role">Junior Account/Projectmanager</p>
+    <p class="footer-agency">ACT.AGENCY</p>
+  </div>
+</footer>
+
+<!-- OVERLAYS -->
+<div class="overlay" id="overlay-case1">
+  <div class="overlay-inner">
+    <div class="overlay-close">
+      <button class="btn-close" onclick="closeOverlay('case1')">Sluiten</button>
+    </div>
+    <h2 class="overlay-title">Events & Productie</h2>
+    <div class="overlay-body">
+      <div class="overlay-text">
+        <p>Van eventproductie en artist handling tot transportcoördinatie en operationele planning. Verantwoordelijk voor het coördineren van artiesten, stakeholders, crew en logistieke processen tijdens evenementen zoals No Art, Strafwerk, Audio Obscura, Awakenings, Draaimolen, Keinemusik, Circoloco, Loveland en meer.</p>
+        <div class="focus-areas">
+          <p class="focus-areas-title">Focusgebieden</p>
+          <ul class="focus-list">
+            <li>Planning &amp; logistiek</li>
+            <li>Stakeholdermanagement</li>
+            <li>Artist handling</li>
+            <li>Teamcoördinatie</li>
+            <li>Operationele uitvoering</li>
+          </ul>
+        </div>
+      </div>
+      <div class="overlay-photos">
+        <div class="overlay-photo"><img src="casus-1/IMG_4866.jpeg" alt="Events & Productie foto 1"></div>
+        <div class="overlay-photo"><img src="casus-1/IMG_0964.JPG" alt="Events & Productie foto 2"></div>
+        <div class="overlay-photo"><img src="casus-1/IMG_3013.jpeg" alt="Events & Productie foto 3"></div>
+        <div class="overlay-photo"><img src="casus-1/IMG_0847.JPG" alt="Events & Productie foto 4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-case2">
+  <div class="overlay-inner">
+    <div class="overlay-close">
+      <button class="btn-close" onclick="closeOverlay('case2')">Sluiten</button>
+    </div>
+    <h2 class="overlay-title">AAAFRESH123 Expositie & Event</h2>
+    <div class="overlay-body">
+      <div class="overlay-text">
+        <p>Verantwoordelijk voor de coördinatie en uitvoering van een kunstexpositie en netwerkevenement op kerstavond. Het project bracht kunstenaars, sponsoren, leveranciers en gasten samen binnen één concept en vereiste afstemming tussen verschillende partijen om alles succesvol te realiseren.</p>
+        <div class="focus-areas">
+          <p class="focus-areas-title">Verantwoordelijkheden</p>
+          <ul class="focus-list">
+            <li>Coördinatie van transport, plaatsing en presentatie van kunstwerken</li>
+            <li>Afstemming met sponsoren en leveranciers</li>
+            <li>Productie van de branded photowall</li>
+            <li>Coördinatie van een samenwerking tussen kunstenaars en een behangproducent</li>
+            <li>Bewaken van planning en uitvoering voorafgaand aan en tijdens het evenement</li>
+          </ul>
+        </div>
+        <div class="focus-areas">
+          <p class="focus-areas-title">Resultaat</p>
+          <p>Een succesvol evenement waarbij kunst, merken en bezoekers samenkwamen in een volledig geproduceerde expositie-ervaring.</p>
+        </div>
+      </div>
+      <div class="overlay-photos">
+        <div class="overlay-photo"><img src="casus-2/AAAfresh123-Expo-Dec-2025-Amsterdam-forInstagram-Shot_by_Boven-165.JPG" alt="AAAFRESH123 foto 1"></div>
+        <div class="overlay-photo"><img src="casus-2/AAAfresh123-Expo-Dec-2025-Amsterdam-forInstagram-Shot_by_Boven-24.JPG" alt="AAAFRESH123 foto 2"></div>
+        <div class="overlay-photo"><img src="casus-2/IMG_7533.JPG" alt="AAAFRESH123 foto 3"></div>
+        <div class="overlay-photo"><img src="casus-2/89EC113F-A867-48D6-A210-B3D468CF62C9.jpg" alt="AAAFRESH123 foto 4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-case3">
+  <div class="overlay-inner">
+    <div class="overlay-close">
+      <button class="btn-close" onclick="closeOverlay('case3')">Sluiten</button>
+    </div>
+    <h2 class="overlay-title">Luxury Selection</h2>
+    <div class="overlay-body">
+      <div class="overlay-text">
+        <p>Sinds september verantwoordelijk voor de dagelijkse coördinatie van meerdere luxury spiritmerken binnen één account, waaronder Seventy One Gin, De Lossy Champagne, Clase Azul, Beluga Vodka en NOAM Beer.</p>
+        <div class="focus-areas">
+          <p class="focus-areas-title">Verantwoordelijkheden</p>
+          <ul class="focus-list">
+            <li>Coördinatie van meerdere merken en projecten tegelijkertijd</li>
+            <li>Afstemming met klanten, partners en leveranciers</li>
+            <li>Productie van POS-materialen en drukwerk</li>
+            <li>Ondersteuning van merkactivaties en events</li>
+            <li>Bewaken van planningen en deadlines</li>
+            <li>PR- en influencercoördinatie</li>
+          </ul>
+        </div>
+        <div class="focus-areas">
+          <p class="focus-areas-title">Projecten</p>
+          <ul class="focus-list">
+            <li>Spiegelstickers</li>
+            <li>Menukaarten</li>
+            <li>POS-materialen</li>
+            <li>Eventmaterialen</li>
+            <li>Brand activaties</li>
+            <li>Persmomenten</li>
+          </ul>
+        </div>
+      </div>
+      <div class="overlay-photos">
+        <div class="overlay-photo"><img src="casus-3/IMG_2345.jpeg" alt="Luxury Selection foto 1"></div>
+        <div class="overlay-photo"><img src="casus-3/IMG_9958.jpeg" alt="Luxury Selection foto 2"></div>
+        <div class="overlay-video-cell">
+          <video controls playsinline>
+            <source src="casus-3/IMG_9974.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="overlay-photo"><img src="casus-3/260220-NM_02_LXR-deLossy_3-Hexashots.jpg" alt="Luxury Selection foto 3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openOverlay(id) {
+    document.getElementById('overlay-' + id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeOverlay(id) {
+    document.getElementById('overlay-' + id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.overlay.active').forEach(function(o) {
+        o.classList.remove('active');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
